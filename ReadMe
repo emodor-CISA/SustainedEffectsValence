@@ -1,0 +1,32 @@
+This file provides a description of the dataset found in Yareta, accompanying the paper "Sustained Effects of Pleasant and Unpleasant Smells on Brain Activity" 
+by Heather Carlson, Joana Leitao, Sylvain Delplanque, Isabelle Cayeux, David Sander, and Patrik Vuilleumier
+
+Yareta Link: 
+
+
+******************************
+*** WHAT IS IN THIS FOLDER ***
+****************************** 
+
+Your download file from Yareta includes:
+	all raw MRI data (in Nifti format) used in study
+	all raw physiology data (in .acq format) used in study
+	all matlab files containing the behavioural data. 
+	Code used in the study
+
+The data stored here is data for 20 participants, labelled 10 through to 29. All data was collected over 2 days, in 4 runs (8 runs total).
+	
+MRI data is contained in folder labelled separately for each subject ('Nifti-subject number-func-sess1' for the first day, the same-sess2 for the second day) and files are saved under the four 
+	separate runs within these folders (eg: sub-10_ses-1_run1-TR2000_bold.nii for day 1, run 1; sub-10_ses-1_run2-TR2000_bold.nii for day 1, run 2).
+
+Anatomy files for each subject are in the folder Anat_AllSubs
+
+The raw physiology data for day 1 can be found in Physiology-allSubs-sess1, for day 2 in Physiology-allSubs-sess2. 
+	Physiology data has been split in to the four runs and are labelled as such (eg: sub-10-ses-1_Run1.acq for day 1, run 1)
+
+Matlab files can be found in the individual nifti folders. The onsets of events for the MRI have also been made available in the same folders in .txt files.
+
+Code used in the study can be found in the folder "Code"
+
+Once this data has been saved in Yareta, the deposit cannot be modified. If modifications or updates are necessary, they will be noted here.
+
