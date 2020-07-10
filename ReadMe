@@ -1,7 +1,9 @@
-This file provides a description of the dataset found in Yareta, accompanying the paper "Sustained Effects of Pleasant and Unpleasant Smells on Brain Activity" 
+This file explains to you how to obtain the results found in the paper "Sustained Effects of Pleasant and Unpleasant Smells on Brain Activity" 
 by Heather Carlson, Joana Leitao, Sylvain Delplanque, Isabelle Cayeux, David Sander, and Patrik Vuilleumier
 
-Yareta Link: 
+Once this data has been saved in Yareta, the deposit cannot be modified. 
+It is possible that modifications or updates have been made. Please see https://github.com/emodor-CISA/SustainedEffectsValence/
+for any additional changes or comments that have been made. 
 
 
 ******************************
@@ -9,24 +11,60 @@ Yareta Link:
 ****************************** 
 
 Your download file from Yareta includes:
+
 	all raw MRI data (in Nifti format) used in study
 	all raw physiology data (in .acq format) used in study
-	all matlab files containing the behavioural data. 
+	all behavioural data (onsets and timing of resting state and smell periods, reponses and response timing, smell used in trials, etc) 
 	Code used in the study
+	Ratings of stimuli prior to the study
 
 The data stored here is data for 20 participants, labelled 10 through to 29. All data was collected over 2 days, in 4 runs (8 runs total).
 	
-MRI data is contained in folder labelled separately for each subject ('Nifti-subject number-func-sess1' for the first day, the same-sess2 for the second day) and files are saved under the four 
-	separate runs within these folders (eg: sub-10_ses-1_run1-TR2000_bold.nii for day 1, run 1; sub-10_ses-1_run2-TR2000_bold.nii for day 1, run 2).
+1) /PreStudyRatings.xlsx
+	Pre-study ratings are contained in the excel spreadsheet. These were ratings of pleasantness and intensities of different smells by 10 unrelated volunteers 
 
-Anatomy files for each subject are in the folder Anat_AllSubs
+2) /Code/
+	Code used in the study can be found in the folder "Code"
+	Please see the Read Me file in the code folder for a full description of the contents of the code and how to use them.
+	Within the code folder, there are 5 folders:
+		Experiment_Code : the code used to do the experiment
+		PreprocessingMRIData: code used to preprocess the MRI data using SPM12
+		PreprocessPhysiology: code used to preprocess the physiology data for use as a regressor in the SPM GLM
+		GLM: code used to do a first and second level anlaysis for the SPM GLM
+		Connectivity Code: Code used for the wavelet transform, permutation, and random forest
 
-The raw physiology data for day 1 can be found in Physiology-allSubs-sess1, for day 2 in Physiology-allSubs-sess2. 
-	Physiology data has been split in to the four runs and are labelled as such (eg: sub-10-ses-1_Run1.acq for day 1, run 1)
+3) /Nifti/
 
-Matlab files can be found in the individual nifti folders. The onsets of events for the MRI have also been made available in the same folders in .txt files.
+	/Nifti/s_#/anat
+		Anatomy files for each subject are in the folder anat, for example, /Nifti/s_10/anat
+		Anatomy folders contain .nii copies of the T1 and SWI files (SWI was not used in the experiment), in addition to .json header files. 
 
-Code used in the study can be found in the folder "Code"
+	Nifti/s_#/ses-#/func
+		MRI data is contained in the Nifti folder labelled separately for each subject, with separate folders for each day. For example
+		\Nifti\s_10\ses-1\func --> contains the functional files for the four runs on day 1
+		\Nifti\s_10\ses-2\func -- > contains the functional files for the four runs on day 2
+		Each folder contains .nii files for each of the runs, labelled run 1 - 4, in addition to a .json header file.
+		Each folder also contains .txt files with the onset times and end times for the resting state trials and smell trials (labelled accordingly)
+		(this can also be found in participant's matlab files)
+		Each folder also contains the participant matlab files which are the ouput from the experiment (see below, number 4, for an overview of the matlab file contents).
 
-Once this data has been saved in Yareta, the deposit cannot be modified. If modifications or updates are necessary, they will be noted here.
+	Nifti/s_#/ses-#/physiology
+		Physiology data (heart, respiration, triggers, and skin conductance): 
+		The raw data can be found in subject session folders, under physiology.
+		Eg: \Nifti\s_10\ses-1\physiology for day 1
+		There are four .acq files, one for each run, labelled accordingly.
 
+	Nifti/DataSet_BehaviouralResponsesUsedinStudy.xlsx
+		Finally, in Nifti/ there is an excel spreadsheet containing the participant responses to pleasantness, intensity, concentration, resting state responses, PANAS-X and STAI questions, as well as participant age and sex information
+		With the exception of STAI, participant information, and PANAS-X, all of these responses can also be found in the matlab output file.
+
+
+
+4) Matlab files
+	The matlab files were the output from running the experiment code (see Code/Experiment_Code/Main.m). There is one matlab file for each subject day for the four runs.
+	If you open a matlab file, it contains the following information:
+		DATA.meta: you can find the odor label of the trial here, as well as the corresponding trigger number, in .odorLabel and .odorTrigger
+		DATA.duration: the durations of all events - in particular, the concentration/concentration question, intensity, liking (pleasantness), familiar, and resting state question give the duration of participant reaction times to the question asked during the study  
+		DATA.response: responses from participants on smell itensity, pleasantness, familiarity, post resting state question, and concentration
+		DATA.onset: the timing of the onset of different events - in particular concentrationStart for onset of smell, liking intensity familiar concentrationQuestionand restingstateQuestion for the onset of the respective questions, and restingstate for onset of restingstate trial.
+ 
